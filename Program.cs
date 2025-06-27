@@ -11,14 +11,13 @@ namespace PagamentosApp
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-                    webBuilder
-                        .UseUrls($"http://0.0.0.0:{port}")
-                        .UseStartup<Startup>();
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+            webBuilder.UseStartup<Startup>();
+            webBuilder.UseUrls($"http://*:{port}");
+        });
 
-                });
     }
 }
