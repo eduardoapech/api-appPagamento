@@ -60,3 +60,15 @@ C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\obj\Debug\
 C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\obj\Debug\net7.0\PagamentosApp.genruntimeconfig.cache
 C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\obj\Debug\net7.0\ref\PagamentosApp.dll
 C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\obj\Debug\net7.0\PagamentosApp.sourcelink.json
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\Npgsql.dll
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\alpine-arm\native\libe_sqlite3.so
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\alpine-arm64\native\libe_sqlite3.so
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\browser-wasm\nativeassets\net7.0\e_sqlite3.a
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib

@@ -14,9 +14,11 @@ namespace PagamentosApp
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
                     webBuilder
-                        .UseUrls("http://0.0.0.0:5000") // <- Isso aqui permite acesso pelo IP da rede
+                        .UseUrls($"http://0.0.0.0:{port}")
                         .UseStartup<Startup>();
+
                 });
     }
 }

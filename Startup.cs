@@ -18,9 +18,17 @@ namespace PagamentosApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<AppDbContext>(opt => opt.UseSqlite("Data Source=pagamentos.db"));
-            services.AddCors(opt => opt.AddPolicy("AllowAll", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
+            // Aqui muda para PostgreSQL com variável de ambiente
+            services.AddDbContext<AppDbContext>(opt =>
+                opt.UseNpgsql("Host=localhost;Port=5432;Database=controledepagamentosdb;Username=postgres;Password=123456"));
+
+
+            services.AddCors(opt =>
+                opt.AddPolicy("AllowAll", b =>
+                    b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
         }
+
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

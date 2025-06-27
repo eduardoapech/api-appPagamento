@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PagamentosApp.Models;
 
 #nullable disable
@@ -11,29 +12,38 @@ using PagamentosApp.Models;
 namespace PagamentosApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250622220905_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250627133929_InicialPostgre")]
+    partial class InicialPostgre
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("PagamentosApp.Models.Pagamento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Ano")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("DataPagamento")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Mes")
+                        .HasColumnType("integer");
 
                     b.Property<int>("PessoaId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Mes")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -46,14 +56,23 @@ namespace PagamentosApp.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FotoUrl")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Idade")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
-                    b.Property<decimal>("ValorMensal")
-                        .HasColumnType("TEXT");
+                    b.Property<string>("Ramo")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
