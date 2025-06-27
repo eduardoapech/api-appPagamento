@@ -21,8 +21,7 @@ namespace PagamentosApp
 
             // Aqui muda para PostgreSQL com variável de ambiente
             services.AddDbContext<AppDbContext>(opt =>
-                opt.UseNpgsql("Host=localhost;Port=5432;Database=controledepagamentosdb;Username=postgres;Password=123456"));
-
+                opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddCors(opt =>
                 opt.AddPolicy("AllowAll", b =>

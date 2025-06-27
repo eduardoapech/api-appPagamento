@@ -72,3 +72,4 @@ C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\
 C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
 C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
 C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
+C:\Users\eduar\project2025\pagamentos_app_completo (1)\backend-csharp\bin\Debug\net7.0\appsettings.Production.json
