@@ -13,6 +13,7 @@ namespace PagamentosApp.Controllers
     public class PessoaController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly string _baseUrl = "https://api-apppagamento-1.onrender.com"; // ✅ URL do Render
 
         public PessoaController(AppDbContext context)
         {
@@ -40,7 +41,8 @@ namespace PagamentosApp.Controllers
                     await dto.Foto.CopyToAsync(stream);
                 }
 
-                fotoUrl = $"uploads/{fileName}".Replace("\\", "/");
+                // ✅ Corrigido: agora a URL tem o domínio completo
+                fotoUrl = $"{_baseUrl}/uploads/{fileName}".Replace("\\", "/");
             }
 
             var pessoa = new Pessoa
@@ -90,12 +92,12 @@ namespace PagamentosApp.Controllers
                     await dto.Foto.CopyToAsync(stream);
                 }
 
-                pessoa.FotoUrl = $"uploads/{fileName}".Replace("\\", "/");
+                // ✅ Corrigido: URL da imagem atualizada com domínio do Render
+                pessoa.FotoUrl = $"{_baseUrl}/uploads/{fileName}".Replace("\\", "/");
             }
 
             _context.SaveChanges();
             return Ok(pessoa);
         }
-
     }
 }
