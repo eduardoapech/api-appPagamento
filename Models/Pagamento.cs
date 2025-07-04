@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace PagamentosApp.Models
 {
-    [Table("pagamento")] // 👈 força o EF a usar exatamente esse nome no banco
+    [Table("pagamentos")] // 👈 força o EF a usar exatamente esse nome no banco
     public class Pagamento
     {
         public int Id { get; set; }
