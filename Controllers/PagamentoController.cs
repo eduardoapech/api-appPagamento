@@ -36,6 +36,26 @@ namespace PagamentosApp.Controllers
             return Ok(pagamentos);
         }
 
+        [HttpGet]
+        public IActionResult Get([FromQuery] int pessoaId, [FromQuery] int? ano = null)
+        {
+            var anoAtual = ano ?? DateTime.Now.Year;
+
+            var pagamentos = _context.Pagamentos
+                .Where(p => p.PessoaId == pessoaId && p.Ano == anoAtual)
+                .Select(p => new
+                {
+                    id = p.Id,
+                    pessoaId = p.PessoaId,
+                    mes = p.Mes,
+                    ano = p.Ano,
+                    dataPagamento = p.DataPagamento
+                })
+                .ToList();
+
+            return Ok(pagamentos);
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] PagamentoDto dto)
         {
