@@ -61,7 +61,6 @@ namespace PagamentosApp.Controllers
         {
             try
             {
-                // Verifica se a pessoa existe no banco
                 var pessoaExiste = _context.Pessoas.Any(p => p.Id == dto.PessoaId);
                 if (!pessoaExiste)
                 {
@@ -81,12 +80,17 @@ namespace PagamentosApp.Controllers
 
                 return Created($"api/pagamento/{pagamento.Id}", pagamento);
             }
+            catch (DbUpdateException ex)
+            {
+                // Exibe erro do banco, como violação de FK, duplicidade, etc
+                return StatusCode(500, $"Erro ao salvar: {ex.InnerException?.Message ?? ex.Message}");
+            }
             catch (Exception ex)
             {
-                // 🔴 Isso vai te mostrar a exceção real
-                return StatusCode(500, $"Erro interno: {ex.Message}");
+                return StatusCode(500, $"Erro inesperado: {ex.Message}");
             }
         }
+
 
 
         [HttpGet("pessoa/{pessoaId}")]
