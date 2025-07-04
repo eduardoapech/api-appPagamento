@@ -59,19 +59,35 @@ namespace PagamentosApp.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] PagamentoDto dto)
         {
-            var pagamento = new Pagamento
+            try
             {
-                PessoaId = dto.PessoaId,
-                Mes = dto.Mes,
-                Ano = dto.Ano,
-                DataPagamento = DateTime.UtcNow
-            };
+                // Verifica se a pessoa existe no banco
+                var pessoaExiste = _context.Pessoas.Any(p => p.Id == dto.PessoaId);
+                if (!pessoaExiste)
+                {
+                    return BadRequest("Pessoa não encontrada.");
+                }
 
-            _context.Pagamentos.Add(pagamento);
-            _context.SaveChanges();
+                var pagamento = new Pagamento
+                {
+                    PessoaId = dto.PessoaId,
+                    Mes = dto.Mes,
+                    Ano = dto.Ano,
+                    DataPagamento = DateTime.UtcNow
+                };
 
-            return Created($"api/pagamento/{pagamento.Id}", pagamento);
+                _context.Pagamentos.Add(pagamento);
+                _context.SaveChanges();
+
+                return Created($"api/pagamento/{pagamento.Id}", pagamento);
+            }
+            catch (Exception ex)
+            {
+                // 🔴 Isso vai te mostrar a exceção real
+                return StatusCode(500, $"Erro interno: {ex.Message}");
+            }
         }
+
 
         [HttpGet("pessoa/{pessoaId}")]
         public IActionResult GetPorPessoa(int pessoaId)
