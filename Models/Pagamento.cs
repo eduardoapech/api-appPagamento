@@ -1,14 +1,16 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema; // ✅ necessário para usar [Table]
 using System.Text.Json.Serialization;
 
 namespace PagamentosApp.Models
 {
+    [Table("pagamento")] // 👈 força o EF a usar exatamente esse nome no banco
     public class Pagamento
     {
         public int Id { get; set; }
         public int PessoaId { get; set; }
 
-        [JsonIgnore] // Ignora este campo ao receber JSON via POST
+        [JsonIgnore]
         public Pessoa Pessoa { get; set; } = null!;
 
         public DateTime DataPagamento { get; set; }
