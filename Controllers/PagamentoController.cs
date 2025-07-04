@@ -67,6 +67,14 @@ namespace PagamentosApp.Controllers
                     return BadRequest("Pessoa não encontrada.");
                 }
 
+                var duplicado = _context.Pagamentos.Any(p =>
+                    p.PessoaId == dto.PessoaId && p.Mes == dto.Mes && p.Ano == dto.Ano);
+
+                if (duplicado)
+                {
+                    return Conflict("Pagamento já existe para essa pessoa, mês e ano.");
+                }
+
                 var pagamento = new Pagamento
                 {
                     PessoaId = dto.PessoaId,
@@ -82,14 +90,19 @@ namespace PagamentosApp.Controllers
             }
             catch (DbUpdateException ex)
             {
-                // Exibe erro do banco, como violação de FK, duplicidade, etc
-                return StatusCode(500, $"Erro ao salvar: {ex.InnerException?.Message ?? ex.Message}");
+                var innerMessage = ex.InnerException?.Message ?? ex.Message;
+
+                // ✅ Mostra o erro real no log do servidor E na resposta
+                Console.WriteLine($"❌ DbUpdateException: {innerMessage}");
+                return StatusCode(500, $"Erro ao salvar no banco: {innerMessage}");
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"❌ Erro inesperado: {ex.Message}");
                 return StatusCode(500, $"Erro inesperado: {ex.Message}");
             }
         }
+
 
 
 
