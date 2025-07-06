@@ -137,7 +137,10 @@ namespace PagamentosApp.Controllers
                 {
                     nome = p.Pessoa.Nome,
                     ramo = p.Pessoa.Ramo,
-                    dataPagamento = p.DataPagamento.ToString("dd/MM/yyyy HH:mm"),
+                    dataPagamento = TimeZoneInfo.ConvertTimeFromUtc(
+                    p.DataPagamento,
+                    TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo")
+                ).ToString("dd/MM/yyyy HH:mm"),
                     status = "Pago",
                     mes = p.Mes // ← Adicionado aqui
                 })
