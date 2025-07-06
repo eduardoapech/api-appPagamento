@@ -75,12 +75,16 @@ namespace PagamentosApp.Controllers
                     return Conflict("Pagamento já existe para essa pessoa, mês e ano.");
                 }
 
+                // ✅ Pega hora local de Brasília convertida corretamente para UTC
+                var timezone = TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo");
+                var dataHoraBrasil = TimeZoneInfo.ConvertTimeToUtc(DateTime.Now, timezone);
+
                 var pagamento = new Pagamento
                 {
                     PessoaId = dto.PessoaId,
                     Mes = dto.Mes,
                     Ano = dto.Ano,
-                    DataPagamento = DateTime.UtcNow
+                    DataPagamento = dataHoraBrasil
                 };
 
                 _context.Pagamentos.Add(pagamento);
@@ -91,8 +95,6 @@ namespace PagamentosApp.Controllers
             catch (DbUpdateException ex)
             {
                 var innerMessage = ex.InnerException?.Message ?? ex.Message;
-
-                // ✅ Mostra o erro real no log do servidor E na resposta
                 Console.WriteLine($"❌ DbUpdateException: {innerMessage}");
                 return StatusCode(500, $"Erro ao salvar no banco: {innerMessage}");
             }
@@ -102,6 +104,7 @@ namespace PagamentosApp.Controllers
                 return StatusCode(500, $"Erro inesperado: {ex.Message}");
             }
         }
+
 
 
 
