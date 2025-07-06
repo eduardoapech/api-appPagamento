@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zq9NrQtCOp0=",
+  "dgSpecHash": "KHWvbWQAd2E=",
   "success": true,
-  "projectFilePath": "C:\\Users\\eduar\\project2025\\pagamentos_app_completo (1)\\backend-csharp\\PagamentosApp.csproj",
+  "projectFilePath": "C:\\Users\\eduar\\project2025\\pagamentos_app_completo\\backend-csharp\\PagamentosApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\eduar\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\eduar\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\7.0.7\\microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.7.nupkg.sha512",

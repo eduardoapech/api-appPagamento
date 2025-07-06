@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\eduar\\project2025\\pagamentos_app_completo (1)\\backend-csharp\\PagamentosApp.csproj": {}
+    "C:\\Users\\eduar\\project2025\\pagamentos_app_completo\\backend-csharp\\PagamentosApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\eduar\\project2025\\pagamentos_app_completo (1)\\backend-csharp\\PagamentosApp.csproj": {
+    "C:\\Users\\eduar\\project2025\\pagamentos_app_completo\\backend-csharp\\PagamentosApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\eduar\\project2025\\pagamentos_app_completo (1)\\backend-csharp\\PagamentosApp.csproj",
+        "projectUniqueName": "C:\\Users\\eduar\\project2025\\pagamentos_app_completo\\backend-csharp\\PagamentosApp.csproj",
         "projectName": "PagamentosApp",
-        "projectPath": "C:\\Users\\eduar\\project2025\\pagamentos_app_completo (1)\\backend-csharp\\PagamentosApp.csproj",
+        "projectPath": "C:\\Users\\eduar\\project2025\\pagamentos_app_completo\\backend-csharp\\PagamentosApp.csproj",
         "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\eduar\\project2025\\pagamentos_app_completo (1)\\backend-csharp\\obj\\",
+        "outputPath": "C:\\Users\\eduar\\project2025\\pagamentos_app_completo\\backend-csharp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

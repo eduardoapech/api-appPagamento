@@ -42,7 +42,7 @@ namespace PagamentosApp.Controllers
                 }
 
                 // ✅ Corrigido: agora a URL tem o domínio completo
-                fotoUrl = $"{_baseUrl}/uploads/{fileName}".Replace("\\", "/");
+                fotoUrl = $"uploads/{fileName}".Replace("\\", "/");
             }
 
             var pessoa = new Pessoa
@@ -93,7 +93,7 @@ namespace PagamentosApp.Controllers
                 }
 
                 // ✅ Corrigido: URL da imagem atualizada com domínio do Render
-                pessoa.FotoUrl = $"{_baseUrl}/uploads/{fileName}".Replace("\\", "/");
+                pessoa.FotoUrl = $"uploads/{fileName}".Replace("\\", "/");
             }
 
             _context.SaveChanges();

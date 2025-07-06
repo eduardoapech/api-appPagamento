@@ -80,7 +80,7 @@ namespace PagamentosApp.Controllers
                     PessoaId = dto.PessoaId,
                     Mes = dto.Mes,
                     Ano = dto.Ano,
-                    DataPagamento = DateTime.UtcNow
+                    DataPagamento = DateTime.Now
                 };
 
                 _context.Pagamentos.Add(pagamento);
