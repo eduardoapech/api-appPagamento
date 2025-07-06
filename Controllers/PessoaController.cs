@@ -97,7 +97,9 @@ namespace PagamentosApp.Controllers
             }
 
             _context.SaveChanges();
-            return Ok(pessoa);
+            var pessoaAtualizada = _context.Pessoas.Find(pessoa.Id);
+            return Ok(pessoaAtualizada);
+
         }
     }
 }
