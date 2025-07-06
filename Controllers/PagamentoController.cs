@@ -75,22 +75,12 @@ namespace PagamentosApp.Controllers
                     return Conflict("Pagamento já existe para essa pessoa, mês e ano.");
                 }
 
-                // ✅ Converte corretamente o horário atual para horário de Brasília e garante UTC
-                var brasilTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo");
-
-                // 🕒 Pega o horário local do Brasil (ex: 14:00)
-                var horarioBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilTimeZone);
-
-                // ✅ Agora converte esse horário *local* de volta para UTC — mas fixando Kind = Utc
-                var dataPagamentoUtc = TimeZoneInfo.ConvertTimeToUtc(horarioBrasilia, brasilTimeZone);
-
-
                 var pagamento = new Pagamento
                 {
                     PessoaId = dto.PessoaId,
                     Mes = dto.Mes,
                     Ano = dto.Ano,
-                    DataPagamento = dataPagamentoUtc
+                    DataPagamento = DateTime.Now
                 };
 
                 _context.Pagamentos.Add(pagamento);
@@ -101,6 +91,8 @@ namespace PagamentosApp.Controllers
             catch (DbUpdateException ex)
             {
                 var innerMessage = ex.InnerException?.Message ?? ex.Message;
+
+                // ✅ Mostra o erro real no log do servidor E na resposta
                 Console.WriteLine($"❌ DbUpdateException: {innerMessage}");
                 return StatusCode(500, $"Erro ao salvar no banco: {innerMessage}");
             }
@@ -110,6 +102,9 @@ namespace PagamentosApp.Controllers
                 return StatusCode(500, $"Erro inesperado: {ex.Message}");
             }
         }
+
+
+
 
         [HttpGet("pessoa/{pessoaId}")]
         public IActionResult GetPorPessoa(int pessoaId)
@@ -132,8 +127,6 @@ namespace PagamentosApp.Controllers
         [HttpGet("historico")]
         public IActionResult GetHistorico()
         {
-            var timezone = TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo");
-
             var historico = _context.Pagamentos
                 .Include(p => p.Pessoa)
                 .OrderByDescending(p => p.DataPagamento)
@@ -141,10 +134,9 @@ namespace PagamentosApp.Controllers
                 {
                     nome = p.Pessoa.Nome,
                     ramo = p.Pessoa.Ramo,
-                    dataPagamento = TimeZoneInfo.ConvertTimeFromUtc(p.DataPagamento, timezone)
-                                     .ToString("dd/MM/yyyy HH:mm"),
+                    dataPagamento = p.DataPagamento.ToString("dd/MM/yyyy HH:mm"),
                     status = "Pago",
-                    mes = p.Mes
+                    mes = p.Mes // ← Adicionado aqui
                 })
                 .ToList();
 
