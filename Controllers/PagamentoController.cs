@@ -77,8 +77,13 @@ namespace PagamentosApp.Controllers
 
                 // ✅ Converte corretamente o horário atual para horário de Brasília e garante UTC
                 var brasilTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo");
-                var horarioBrasilia = TimeZoneInfo.ConvertTime(DateTime.UtcNow, TimeZoneInfo.Utc, brasilTimeZone);
-                var dataPagamentoUtc = DateTime.SpecifyKind(horarioBrasilia, DateTimeKind.Utc);
+
+                // 🕒 Pega o horário local do Brasil (ex: 14:00)
+                var horarioBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilTimeZone);
+
+                // ✅ Agora converte esse horário *local* de volta para UTC — mas fixando Kind = Utc
+                var dataPagamentoUtc = TimeZoneInfo.ConvertTimeToUtc(horarioBrasilia, brasilTimeZone);
+
 
                 var pagamento = new Pagamento
                 {
