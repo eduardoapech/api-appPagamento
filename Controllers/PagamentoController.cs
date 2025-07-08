@@ -36,6 +36,24 @@ namespace PagamentosApp.Controllers
             return Ok(pagamentos);
         }
 
+        [HttpGet("todos")]
+        public IActionResult GetTodos()
+        {
+            var pagamentos = _context.Pagamentos
+                .Select(p => new
+                {
+                    id = p.Id,
+                    pessoaId = p.PessoaId,
+                    mes = p.Mes,
+                    ano = p.Ano,
+                    dataPagamento = p.DataPagamento
+                })
+                .ToList();
+
+            return Ok(pagamentos);
+        }
+
+
         [HttpGet]
         public IActionResult Get([FromQuery] int pessoaId, [FromQuery] int? ano = null)
         {
